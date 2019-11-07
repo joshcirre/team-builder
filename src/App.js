@@ -1,24 +1,42 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import TeamForm from './components/TeamForm';
+import TeamDisplay from './components/TeamDisplay';
 
 function App() {
+const [teamData, teamDataHandler] =useState([
+  
+    
+        {
+          name: 'Josh Cirre',
+          role: 'Support Engineer',
+          email: 'joshcirre@gmail.com'
+        },
+        {
+          name: 'Zuck',
+          role: 'Lizard King',
+          email: 'z@fb.com'
+        },
+        {
+          name: 'RDJ',
+          role: 'Iron Man',
+          email: 'toosoon@rip.com'
+        }
+      
+    
+  ])
+
+const addTeamMember = (member) => {
+  const newMember = teamDataHandler([...teamData,member]);
+}
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <TeamForm 
+      addTeamMember={addTeamMember}
+      team={teamData} />
+      <TeamDisplay
+      team={teamData} />
+     
     </div>
   );
 }
